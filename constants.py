@@ -8,7 +8,7 @@ CORES_UNICAS = {
     "Preto": "#222222",
 }
 
-# Limite mínimo e máximo de parâmetros
+# limite mínimo e máximo de parâmetros
 LIMITES = {
     "n_jogadores": (1, 300),
     "n_partidas": (1, 5000),
