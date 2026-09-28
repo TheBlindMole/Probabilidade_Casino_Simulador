@@ -10,8 +10,8 @@ class SimuladorCassino:
         self.aposta = aposta
         self.house_edge_pct = house_edge_pct
         self.n_partidas = n_partidas
-        # Com house edge 0% a moeda é justa (p = 0.5). A margem da casa
-        # reduz essa probabilidade de vitória do jogador.
+        # com house edge 0% a moeda é justa (p = 0.5)
+        # reduz essa probabilidade de vitória do jogador
         self.p_vitoria = 0.5 * (1 - house_edge_pct / 100)
 
     def simular(self, seed=None):
@@ -27,7 +27,7 @@ class SimuladorCassino:
             pode_apostar = saldo_anterior >= self.aposta
             venceu = rng.random(m) < self.p_vitoria
             delta = np.where(venceu, self.aposta, -self.aposta)
-            # Quem não tem saldo suficiente para a aposta "quebra" e fica parado.
+            # sem saldo = incapacitado para apostar
             delta = np.where(pode_apostar, delta, 0.0)
             saldos[t, :] = saldo_anterior + delta
 
