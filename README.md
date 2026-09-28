@@ -1,9 +1,9 @@
 # Simulador de Cassino — Lei dos Grandes Números & House Edge
 
-![Preview do projeto](https://media.tenor.com/OOz18OcUlxYAAAAM/pluto-anime.gif)
+![Preview do projeto](https://github.com/TheBlindMole/Probabilidade_Casino_Simulador/blob/main/app.gif?raw=true)
 
-Simula o saldo de vários jogadores ao longo de várias partidas de um jogo
-tipo vermelho/preto, onde a probabilidade de vitória é sempre um pouco
+Simula o saldo de vários jogadores ao longo de várias partidas de um jogo,
+onde a probabilidade de vitória é sempre um pouco
 menor que 50% (a margem da casa / house edge). Individualmente cada
 jogador segue um passeio aleatório imprevisível, mas ao juntar muitos
 jogadores e muitas partidas, a Lei dos Grandes Números garante lucro ao
@@ -11,24 +11,12 @@ cassino a longo prazo.
 
 ## Como correr
 
-Requer Python 3.9+ com `tkinter` (normalmente já incluído), `numpy` e
+Requer Python 3.9+ com `tkinter`, `numpy` e
 `matplotlib`:
 
 ```bash
 pip install -r requirements.txt
 python3 main.py
-```
-
-## Estrutura do projeto
-
-```
-casino_simulator/
-├── main.py         # ponto de entrada — arranca a aplicação
-├── gui.py          # interface gráfica (Tkinter + matplotlib)
-├── simulation.py   # lógica pura da simulação (random walk, house edge)
-├── utils.py        # funções auxiliares (cores, formatação de números)
-├── constants.py    # constantes e valores por omissão
-└── requirements.txt
 ```
 
 ## Uso
