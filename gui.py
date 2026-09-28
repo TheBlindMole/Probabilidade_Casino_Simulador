@@ -1,9 +1,4 @@
-"""Interface gráfica (Tkinter + matplotlib) do simulador de cassino.
-
-O layout usa grid com pesos (weight) em vez de tamanhos fixos, para que o
-gráfico e o painel de estatísticas se ajustem automaticamente sempre que a
-janela é redimensionada.
-"""
+#Interface gráfica (Tkinter + matplotlib)
 
 import tkinter as tk
 from tkinter import ttk, messagebox
@@ -34,12 +29,8 @@ class App:
 
         self._construir_interface()
 
-    # ------------------------------------------------------------------ #
-    # Construção da interface
-    # ------------------------------------------------------------------ #
+    # Interface
     def _construir_interface(self):
-        # A janela principal tem 2 colunas: painel de controlo (fixo) e
-        # área do gráfico (expande para preencher o espaço disponível).
         self.root.columnconfigure(0, weight=0)
         self.root.columnconfigure(1, weight=1)
         self.root.rowconfigure(0, weight=1)
@@ -91,12 +82,12 @@ class App:
         )
         self.btn_parar.pack(fill="x")
 
-        # --- área direita: gráfico + estatísticas (expande com a janela) ---
+        #janela responsiva
         direita = ttk.Frame(self.root, padding=(0, 14, 14, 14))
         direita.grid(row=0, column=1, sticky="nsew")
         direita.columnconfigure(0, weight=1)
-        direita.rowconfigure(0, weight=1)   # gráfico: ocupa o espaço extra
-        direita.rowconfigure(1, weight=0)   # estatísticas: altura fixa
+        direita.rowconfigure(0, weight=1)
+        direita.rowconfigure(1, weight=0)
 
         self.fig = Figure(figsize=(8, 5.5), dpi=100)
         self.ax = self.fig.add_subplot(111)
@@ -147,9 +138,7 @@ class App:
         if hasattr(self, "canvas"):
             self.canvas.draw_idle()
 
-    # ------------------------------------------------------------------ #
-    # Validação de parâmetros
-    # ------------------------------------------------------------------ #
+    # validação de parâmetros
     def _ler_parametros(self):
         try:
             n_jogadores = int(self.var_jogadores.get())
@@ -188,9 +177,7 @@ class App:
             house_edge=house_edge, n_partidas=n_partidas, velocidade=velocidade,
         )
 
-    # ------------------------------------------------------------------ #
-    # Simulação e animação
-    # ------------------------------------------------------------------ #
+    # simulação e animação
     def iniciar_simulacao(self):
         params = self._ler_parametros()
         if params is None:
@@ -227,8 +214,7 @@ class App:
         self.ax.set_xlim(0, max(self.n_partidas, 1))
         self.ax.set_ylim(ymin, ymax if ymax > ymin else ymin + 1)
 
-        # Agrupa as partidas em blocos para manter a animação fluida
-        # mesmo com um número grande de partidas.
+        # agrupa as partidas em blocos para manter a animação fluida
         max_frames = 250
         passo = max(1, self.n_partidas // max_frames)
         frames = list(range(passo, self.n_partidas + 1, passo))
